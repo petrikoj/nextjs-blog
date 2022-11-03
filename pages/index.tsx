@@ -5,27 +5,21 @@ import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
 import Date from "../components/date";
 import { GetStaticProps } from "next";
+import { Settings } from "http2";
 
-export const getStaticProps: GetStaticProps = async() => {
-  const allPostsData = getSortedPostsData();
-  return {
-    props: {
-      allPostsData,
-    },
-  };
-}
 
-export default function Home({ allPostsData }) {
+
+export default function Home({ allPostsData }:
+  { allPostsData: { date: string; title: string; id: string }[] }) {
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>Is this thing on?</p>
+        <p>Hello World!</p>
         <p>
-          (This is a sample website - you’ll be building a site like this on{" "}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
+          This is just a sample website - for now.
         </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
@@ -44,4 +38,13 @@ export default function Home({ allPostsData }) {
       </section>
     </Layout>
   );
+}
+
+export const getStaticProps: GetStaticProps = async() => {
+  const allPostsData = getSortedPostsData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
 }
